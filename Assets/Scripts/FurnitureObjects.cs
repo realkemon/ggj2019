@@ -36,7 +36,7 @@ public class FurnitureObjects : MonoBehaviour
         }
     }
 
-    public void setColour ()
+    public void SetColour ()
     {
         //isPlayerOne ? "black" : "white";
     }
