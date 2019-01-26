@@ -1,59 +1,67 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class FurnitureObjects : MonoBehaviour
-{
-    public enum furniture { CHAIR, TABLE};
-    public furniture type;
-    public bool isPickedUp;
+public class FurnitureObjects : MonoBehaviour {
     public bool isBlack;
+    public bool IsUncovered { get; private set; }
+    public SpriteRenderer fullSprite;
+    public SpriteRenderer outline;
+    private List<IntersectCollider> intersects;
 
-       
-    private float angle1 = 30; // swing angle = 2 * angle
-    private float speed1 = 3.0f; // speed (6.28 means about 1 second)
-    //private float speed1 = 0.5f; // speed (6.28 means about 1 second)
+    public float angle1 = 30; // swing angle = 2 * angle
+    public float speed1 = 3.0f; // speed (6.28 means about 1 second)
 
-    private float angle2 = -30; // swing angle = 2 * angle
-    private float speed2 = 3.0f; // speed (6.28 means about 1 second)
-    //private float speed2 = 0.5f; // speed (6.28 means about 1 second)
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isPickedUp)
-        {
-            transform.localEulerAngles = new Vector3(0f,0f, angle1 * Mathf.Sin(speed1 * Time.time));
+    private void OnValidate() {
+        if (fullSprite != null) {
+            fullSprite.color = isBlack ? Color.black : Color.white;
+        }
+        if (outline != null) {
+            outline.color = isBlack ? Color.white : Color.black;
         }
     }
 
-    public void SetColour ()
-    {
+    // Start is called before the first frame update
+    void Start() {
+        outline.gameObject.SetActive(false);
+        intersects = new List<IntersectCollider>();
+        foreach (IntersectCollider coll in GetComponentsInChildren<IntersectCollider>()) {
+            intersects.Add(coll);
+        }
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (!IsUncovered) {
+            bool hasActiveColliders = false;
+            foreach (IntersectCollider coll in intersects) {
+                if (coll.gameObject.activeSelf) {
+                    hasActiveColliders = true;
+                    break;
+                }
+            }
+            if (!hasActiveColliders) {
+                IsUncovered = true;
+                outline.gameObject.SetActive(true);
+            }
+        }
+        else {
+            outline.transform.localEulerAngles = new Vector3(0f, 0f, angle1 * Mathf.Sin(speed1 * Time.time));
+            fullSprite.transform.localEulerAngles = new Vector3(0f, 0f, angle1 * Mathf.Sin(speed1 * Time.time));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (!IsUncovered) {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) {
+                foreach (IntersectCollider coll in intersects) {
+                    coll.gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void SetColour() {
         //isPlayerOne ? "black" : "white";
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //TODO: FURNITURE CAN COLLIDE
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        //TODO: FURNITURE CAN COLLIDE
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        //TODO: FURNITURE CAN COLLIDE
     }
 
     private void OnDrawGizmos() {
