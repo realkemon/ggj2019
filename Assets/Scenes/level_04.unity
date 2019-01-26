@@ -1424,7 +1424,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 3.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &542077205
@@ -2094,7 +2094,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &764923270
@@ -2293,7 +2293,7 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &800083409
@@ -2612,7 +2612,7 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &859545894
@@ -4023,7 +4023,7 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1327155660
@@ -4702,7 +4702,7 @@ SpriteRenderer:
   m_Size: {x: 3, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1723970538
@@ -5086,7 +5086,7 @@ SpriteRenderer:
   m_Size: {x: 1.5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1840495342
@@ -5533,7 +5533,7 @@ PrefabInstance:
     - target: {fileID: 1478130447308773782, guid: 8575bc4523361544dbe7d33f52ce3e2f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1478130446753815116, guid: 8575bc4523361544dbe7d33f52ce3e2f,
         type: 3}
@@ -5548,7 +5548,7 @@ PrefabInstance:
     - target: {fileID: 1478130446924143063, guid: 8575bc4523361544dbe7d33f52ce3e2f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 24
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1478130446753815117, guid: 8575bc4523361544dbe7d33f52ce3e2f,
         type: 3}
@@ -5558,7 +5558,12 @@ PrefabInstance:
     - target: {fileID: 1478130447308773781, guid: 8575bc4523361544dbe7d33f52ce3e2f,
         type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478130446924143056, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8575bc4523361544dbe7d33f52ce3e2f, type: 3}
