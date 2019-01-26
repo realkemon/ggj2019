@@ -55,4 +55,9 @@ public class FurnitureObjects : MonoBehaviour
     {
         //TODO: FURNITURE CAN COLLIDE
     }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.1f);
+    }
 }

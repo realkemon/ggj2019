@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
         Vector2 vel = rigidbody.velocity;
         vel.x = GlobalGameParameters.MaxWalkSpeed * HorizontalInput;
 
-        if (!jumpStarted && VerticalInput > 0f && IsOnSurface) {
+        if (!jumpStarted && VerticalInput > 0f && rigidbody.velocity.y == 0f) {
             vel.y = JumpSpeed;
             jumpFrom = transform.position;
             Debug.Log("JumpFrom: " + jumpFrom);
