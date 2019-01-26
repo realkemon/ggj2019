@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     public Vector3 Velocity => rigidbody.velocity;
     public bool IsOnSurface { get; private set; }
     private bool jumpStarted;
+    private Vector3 jumpFrom;
 
     public SpriteRenderer sr;
     public BoxCollider2D box;
@@ -33,8 +34,8 @@ public class PlayerController : MonoBehaviour {
 
         if (!jumpStarted && VerticalInput > 0f && IsOnSurface) {
             vel.y = JumpSpeed;
-            chain.jumpFrom = transform.position;
-            Debug.Log("JumpFrom: " + chain.jumpFrom);
+            jumpFrom = transform.position;
+            Debug.Log("JumpFrom: " + jumpFrom);
             jumpStarted = true;
         }
         else {
@@ -61,8 +62,8 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (!IsOnSurface && collision.gameObject.layer == LayerMask.NameToLayer("Walkable")) {
-            chain.jumpTo = transform.position;
-            Debug.Log("JumpTo: " + chain.jumpTo);
+            chain.AddJump(jumpFrom, transform.position);
+            Debug.Log("JumpTo: " + transform.position);
             IsOnSurface = true;
         }
     }
