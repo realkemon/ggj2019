@@ -2,13 +2,14 @@
 
 public class PlayerController : MonoBehaviour {
     public bool isPlayerOne;
-    public float jumpSpeed;
+    public float jumpHeight;
     public float maxWalkSpeed;
 
     private float HorizontalInput => Input.GetAxis(isPlayerOne ? "Horizontal1" : "Horizontal2");
     private float VerticalInput => Input.GetAxis(isPlayerOne ? "Vertical1" : "Vertical2");
     private float InteractInput => Input.GetAxis(isPlayerOne ? "Interact1" : "Interact2");
     private float DropInput => Input.GetAxis(isPlayerOne ? "Drop1" : "Drop2");
+    private float JumpSpeed => Mathf.Sqrt(Mathf.Abs(jumpHeight * Physics2D.gravity.y * 2f));
 
     new private Rigidbody2D rigidbody;
     private bool isOnSurface;
@@ -24,9 +25,13 @@ public class PlayerController : MonoBehaviour {
         vel.x = maxWalkSpeed * HorizontalInput;
 
         if (VerticalInput > 0f && isOnSurface) {
-            vel.y = jumpSpeed;
+            vel.y = JumpSpeed;
         }
         rigidbody.velocity = vel;
+
+        if (InteractInput > 0f) {
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
