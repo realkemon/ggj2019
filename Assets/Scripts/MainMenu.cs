@@ -27,13 +27,13 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("LevelsMenu");
     }
 
-    public void OptionsClick()
+    public void ControlsClick()
     {
-        SceneManager.LoadScene("OptionsMenu");
+        SceneManager.LoadScene("ControlsMenu");
     }
 
     public void QuitClick()
     {
-
+        Application.Quit();
     }
 }
