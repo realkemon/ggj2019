@@ -1065,7 +1065,7 @@ Transform:
   - {fileID: 761942025}
   m_Father: {fileID: 1660004583}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60.741}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1089.815}
 --- !u!1 &1493480585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,7 +1284,7 @@ Transform:
   - {fileID: 991361101}
   m_Father: {fileID: 384881520}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 23.507002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 23}
 --- !u!1 &1875754229
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,10 @@ public class FurnitureObjects : MonoBehaviour {
     public SpriteRenderer fullSprite;
     public SpriteRenderer outline;
     private List<IntersectCollider> intersects;
+    new private BoxCollider2D collider;
+
+    public float ColliderHeight => collider.bounds.size.y;
+    public float ColliderWidth => collider.bounds.size.x;
 
     public float angle1 = 30; // swing angle = 2 * angle
     public float speed1 = 3.0f; // speed (6.28 means about 1 second)
@@ -22,6 +26,7 @@ public class FurnitureObjects : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        collider = GetComponent<BoxCollider2D>();
         outline.gameObject.SetActive(false);
         intersects = new List<IntersectCollider>();
         foreach (IntersectCollider coll in GetComponentsInChildren<IntersectCollider>()) {
