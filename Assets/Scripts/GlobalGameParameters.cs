@@ -17,7 +17,7 @@ public class GlobalGameParameters : MonoBehaviour
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            SceneManager.LoadScene("level_01");
+            //SceneManager.LoadScene("level_01");
             if (jumpWidth != 0 && maxWalkSpeed != 0) {
                 float temp = jumpWidth / maxWalkSpeed;
                 float gravity = -Mathf.Abs(jumpHeight / (0.5f * temp * temp - temp));
