@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 2.2
-  jumpWidth: 4
-  maxWalkSpeed: 3
+  jumpWidth: 1
+  maxWalkSpeed: 7
