@@ -11,4 +11,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level_01.unity
     guid: 16f144924cb1b5b4987923035d511edf
+  - enabled: 1
+    path: Assets/Scenes/cedric_test.unity
+    guid: ec2f42b56b2794f47aca0e5154b3b4b2
+  - enabled: 1
+    path: Assets/Scenes/level_02.unity
+    guid: fee7eac331fcd3d46ab06af709af3d44
+  - enabled: 1
+    path: Assets/Scenes/level_03.unity
+    guid: d3f6207bcf54bf94f9cb70145e93629e
+  - enabled: 1
+    path: Assets/Scenes/level_04.unity
+    guid: 5b29d4ae40f47244d857b694d7e6e9a1
+  - enabled: 1
+    path: Assets/Scenes/level_05.unity
+    guid: 635e3a58c1dfa424289f962dcbed4575
+  - enabled: 1
+    path: Assets/Scenes/LevelsMenu.unity
+    guid: 00d2fde9b14b8d84a9d4b6dfa89c2ac2
+  - enabled: 1
+    path: Assets/Scenes/ControlsMenu.unity
+    guid: ca7573e654ff6b24aa627228f1355e71
   m_configObjects: {}
