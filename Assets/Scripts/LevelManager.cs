@@ -6,18 +6,21 @@ public class LevelManager : MonoBehaviour
 {
     //public List<FurnitureObject> blackObjectsNeeded;
     //public List<FurnitureObject> whiteObjectsNeeded;
+    public static LevelManager instance;
+
     public Exit whiteExit;
+    public static Exit WhiteExit => instance.whiteExit;
+
     public Exit blackExit;
+    public static Exit BlackExit => instance.blackExit;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PlayerController whitePlayer;
+    public static PlayerController WhitePlayer => instance.whitePlayer;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public PlayerController blackPlayer;
+    public static PlayerController BlackPlayer => instance.blackPlayer;
+
+    private void Awake() {
+        instance = this;
     }
 }

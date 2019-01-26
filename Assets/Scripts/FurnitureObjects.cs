@@ -16,12 +16,7 @@ public class FurnitureObjects : MonoBehaviour {
     public float speed1 = 3.0f; // speed (6.28 means about 1 second)
 
     private void OnValidate() {
-        if (fullSprite != null) {
-            fullSprite.color = isBlack ? Color.black : Color.white;
-        }
-        if (outline != null) {
-            outline.color = isBlack ? Color.white : Color.black;
-        }
+        SetSpriteColour();
     }
 
     // Start is called before the first frame update
@@ -47,6 +42,7 @@ public class FurnitureObjects : MonoBehaviour {
             if (!hasActiveColliders) {
                 IsUncovered = true;
                 outline.gameObject.SetActive(true);
+                (!isBlack ? LevelManager.BlackPlayer : LevelManager.WhitePlayer).chain.AddObject(this);
             }
         }
         else {
@@ -65,8 +61,18 @@ public class FurnitureObjects : MonoBehaviour {
         }
     }
 
-    public void SetColour() {
-        //isPlayerOne ? "black" : "white";
+    public void SetColour(bool black) {
+        isBlack = black;
+        SetSpriteColour();
+    }
+
+    private void SetSpriteColour() {
+        if (fullSprite != null) {
+            fullSprite.color = isBlack ? Color.black : Color.white;
+        }
+        if (outline != null) {
+            outline.color = isBlack ? Color.white : Color.black;
+        }
     }
 
     private void OnDrawGizmos() {
