@@ -282,6 +282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteExit: {fileID: 1478130445643502675}
   blackExit: {fileID: 1478130446850547568}
+  whitePlayer: {fileID: 1478130446677748393}
+  blackPlayer: {fileID: 1478130447118571336}
 --- !u!1 &1478130445785584080
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,8 +778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee4bb9c8c338a74e8193450d754a9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSpace: 0
-  distanceToPlayer: 0
   maxItems: 0
   itemDistance: 0
   numberOfMaximumCorrectedPositions: 0
@@ -1469,8 +1469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee4bb9c8c338a74e8193450d754a9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSpace: 0
-  distanceToPlayer: 0
   maxItems: 0
   itemDistance: 0
   numberOfMaximumCorrectedPositions: 0

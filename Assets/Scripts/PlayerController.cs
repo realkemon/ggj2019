@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 
     public SpriteRenderer sr;
     public BoxCollider2D box;
-    private ItemChain chain;
+    public ItemChain chain;
 
     // Start is called before the first frame update
     void Start() {
@@ -30,9 +30,10 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Vector2 vel = rigidbody.velocity;
+        float temp = vel.x + airMoveFactor * Time.deltaTime * HorizontalInput;
         vel.x = IsOnSurface
             ? GlobalGameParameters.MaxWalkSpeed * HorizontalInput
-            : Mathf.Min(GlobalGameParameters.MaxWalkSpeed, vel.x + airMoveFactor * Time.deltaTime);
+            : Mathf.Sign(temp) * Mathf.Min(GlobalGameParameters.MaxWalkSpeed, Mathf.Abs(temp));
 
         if (!jumpStarted && IsOnSurface && VerticalInput > 0f) {
             vel.y = JumpSpeed;
