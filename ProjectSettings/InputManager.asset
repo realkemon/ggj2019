@@ -6,13 +6,13 @@ InputManager:
   serializedVersion: 2
   m_Axes:
   - serializedVersion: 3
-    m_Name: Horizontal
+    m_Name: Horizontal1
     descriptiveName: Horizontal
     descriptiveNegativeName: 
     negativeButton: left
     positiveButton: right
-    altNegativeButton: a
-    altPositiveButton: d
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 3
     dead: 0.001
     sensitivity: 3
@@ -22,13 +22,13 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Vertical
+    m_Name: Vertical1
     descriptiveName: Vertical
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: down
     positiveButton: up
     altNegativeButton: 
-    altPositiveButton: w
+    altPositiveButton: 
     gravity: 3
     dead: 0.001
     sensitivity: 3
@@ -38,7 +38,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Interact
+    m_Name: Interact1
     descriptiveName: Interact
     descriptiveNegativeName: 
     negativeButton: 
@@ -48,119 +48,87 @@ InputManager:
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
+    snap: 1
     invert: 0
     type: 0
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Drop
+    m_Name: Drop1
     descriptiveName: Drop
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: return
     altNegativeButton: 
-    altPositiveButton: q
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
+    snap: 1
     invert: 0
     type: 0
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Mouse X
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 0
-    dead: 0
-    sensitivity: 0.1
-    snap: 0
-    invert: 0
-    type: 1
-    axis: 0
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Mouse Y
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 0
-    dead: 0
-    sensitivity: 0.1
-    snap: 0
-    invert: 0
-    type: 1
-    axis: 1
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Horizontal
+    m_Name: Horizontal2
     descriptiveName: Horizontal
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: a
+    positiveButton: d
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 0
-    dead: 0.19
-    sensitivity: 1
-    snap: 0
-    invert: 0
-    type: 2
-    axis: 0
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Vertical
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 0
-    dead: 0.19
-    sensitivity: 1
-    snap: 0
-    invert: 1
-    type: 2
-    axis: 1
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Interact
-    descriptiveName: Interact
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: joystick button 0
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
+    gravity: 3
     dead: 0.001
-    sensitivity: 1000
-    snap: 0
+    sensitivity: 3
+    snap: 1
     invert: 0
     type: 0
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Drop
-    descriptiveName: Drop
+    m_Name: Vertical2
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: s
+    positiveButton: w
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Interact2
+    descriptiveName: Interact2
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 1
+    positiveButton: e
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Drop2
+    descriptiveName: Drop2
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: q
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 1
     invert: 0
     type: 0
     axis: 0
@@ -172,7 +140,7 @@ InputManager:
     negativeButton: 
     positiveButton: space
     altNegativeButton: 
-    altPositiveButton: joystick button 4
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -188,7 +156,7 @@ InputManager:
     negativeButton: 
     positiveButton: escape
     altNegativeButton: 
-    altPositiveButton: joystick button 2
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

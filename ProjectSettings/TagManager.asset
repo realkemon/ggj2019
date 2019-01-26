@@ -15,9 +15,9 @@ TagManager:
   - 
   - Background
   - Walls
+  - Walkable
   - Player
   - Objects
-  - 
   - 
   - 
   - 
