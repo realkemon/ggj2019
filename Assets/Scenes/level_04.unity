@@ -4480,7 +4480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1488774876}
   - component: {fileID: 1488774877}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Border Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4676,7 +4676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1543058848}
   - component: {fileID: 1543058849}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Border Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
