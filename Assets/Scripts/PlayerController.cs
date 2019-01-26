@@ -32,14 +32,11 @@ public class PlayerController : MonoBehaviour {
         Vector2 vel = rigidbody.velocity;
         vel.x = GlobalGameParameters.MaxWalkSpeed * HorizontalInput;
 
-        if (!jumpStarted && VerticalInput > 0f && rigidbody.velocity.y == 0f) {
+        if (!jumpStarted && IsOnSurface && VerticalInput > 0f) {
             vel.y = JumpSpeed;
             jumpFrom = transform.position;
             Debug.Log("JumpFrom: " + jumpFrom);
             jumpStarted = true;
-        }
-        else {
-            jumpStarted = false;
         }
         rigidbody.velocity = vel;
 
@@ -61,21 +58,26 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (!IsOnSurface && collision.gameObject.layer == LayerMask.NameToLayer("Walkable")) {
-            chain.AddJump(jumpFrom, transform.position);
-            Debug.Log("JumpTo: " + transform.position);
-            IsOnSurface = true;
+        if (jumpStarted && !IsOnSurface && collision.gameObject.layer == LayerMask.NameToLayer("Walls")) {
+            Vector3 contactPoint = collision.contacts[0].point;
+            if (contactPoint.y <= transform.position.y) {
+                chain.AddJump(jumpFrom, transform.position);
+                Debug.Log("JumpTo: " + transform.position);
+                IsOnSurface = true;
+                jumpStarted = false;
+            }
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
-        if (IsOnSurface && collision.gameObject.layer == LayerMask.NameToLayer("Walkable")) {
+        if (IsOnSurface && collision.gameObject.layer == LayerMask.NameToLayer("Walls")) {
             IsOnSurface = false;
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision) {
-        if (!IsOnSurface && collision.gameObject.layer == LayerMask.NameToLayer("Walkable")) {
+        Vector3 contactPoint = collision.contacts[0].point;
+        if (!IsOnSurface && contactPoint.y <= transform.position.y && collision.gameObject.layer == LayerMask.NameToLayer("Walls")) {
             IsOnSurface = true;
         }
     }

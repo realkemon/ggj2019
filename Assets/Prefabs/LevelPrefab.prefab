@@ -565,7 +565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478130446133679508}
   - component: {fileID: 1478130446133679509}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Floor_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1251,7 +1251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478130446924143063}
   - component: {fileID: 1478130446924143056}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: UpperBorder_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1330,7 +1330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478130446936098341}
   - component: {fileID: 1478130446936098342}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1719,7 +1719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478130447308773782}
   - component: {fileID: 1478130447308773781}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: UpperBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
