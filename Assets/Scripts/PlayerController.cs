@@ -13,8 +13,7 @@ public class PlayerController : MonoBehaviour {
     new private Rigidbody2D rigidbody;
     public Vector3 Velocity => rigidbody.velocity;
     public bool IsOnSurface { get; private set; }
-    private bool jumpStarted;
-    private Vector3 jumpFrom;
+    public bool jumpStarted;
     public float airMoveFactor = 0.3f;
 
     public SpriteRenderer sr;
@@ -37,8 +36,8 @@ public class PlayerController : MonoBehaviour {
 
         if (!jumpStarted && IsOnSurface && VerticalInput > 0f) {
             vel.y = JumpSpeed;
-            jumpFrom = transform.position;
-            Debug.Log("JumpFrom: " + jumpFrom);
+            //jumpFrom = transform.position;
+            //Debug.Log("JumpFrom: " + jumpFrom);
             jumpStarted = true;
         }
         rigidbody.velocity = vel;
@@ -64,8 +63,8 @@ public class PlayerController : MonoBehaviour {
         if (jumpStarted && !IsOnSurface && collision.gameObject.layer == LayerMask.NameToLayer("Walls")) {
             Vector3 contactPoint = collision.contacts[0].point;
             if (contactPoint.y <= transform.position.y) {
-                chain.AddJump(jumpFrom, transform.position);
-                Debug.Log("JumpTo: " + transform.position);
+                //chain.AddJump(jumpFrom, transform.position);
+                //Debug.Log("JumpTo: " + transform.position);
                 IsOnSurface = true;
                 jumpStarted = false;
             }
