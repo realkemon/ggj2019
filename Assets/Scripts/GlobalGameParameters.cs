@@ -21,7 +21,6 @@ public class GlobalGameParameters : MonoBehaviour
             if (jumpWidth != 0 && maxWalkSpeed != 0) {
                 float temp = jumpWidth / maxWalkSpeed;
                 float gravity = -Mathf.Abs(jumpHeight / (0.5f * temp * temp - temp));
-                Debug.Log(gravity);
                 Physics2D.gravity = new Vector2(0f, gravity);
             }
         }
