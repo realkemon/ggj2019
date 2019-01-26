@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     public bool IsOnSurface { get; private set; }
     private bool jumpStarted;
     private Vector3 jumpFrom;
+    public float airMoveFactor = 0.3f;
 
     public SpriteRenderer sr;
     public BoxCollider2D box;
@@ -30,7 +31,9 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Vector2 vel = rigidbody.velocity;
-        vel.x = GlobalGameParameters.MaxWalkSpeed * HorizontalInput;
+        vel.x = IsOnSurface
+            ? GlobalGameParameters.MaxWalkSpeed * HorizontalInput
+            : Mathf.Min(GlobalGameParameters.MaxWalkSpeed, vel.x + airMoveFactor * Time.deltaTime);
 
         if (!jumpStarted && IsOnSurface && VerticalInput > 0f) {
             vel.y = JumpSpeed;

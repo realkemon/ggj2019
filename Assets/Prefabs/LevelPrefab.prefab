@@ -840,6 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerOne: 0
+  airMoveFactor: 3
   sr: {fileID: 1478130446757125367}
   box: {fileID: 0}
 --- !u!114 &1478130446677748388
@@ -1587,6 +1588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerOne: 1
+  airMoveFactor: 3
   sr: {fileID: 1478130446041415429}
   box: {fileID: 0}
 --- !u!114 &1478130447118571338
