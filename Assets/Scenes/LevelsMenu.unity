@@ -144,6 +144,9 @@ MonoBehaviour:
   jumpHeight: 2.2
   jumpWidth: 4
   maxWalkSpeed: 3
+  maxItems: 0
+  itemDistance: 0
+  maximumItemDistance: 0
 --- !u!4 &32757755
 Transform:
   m_ObjectHideFlags: 0
@@ -379,7 +382,6 @@ GameObject:
   - component: {fileID: 284109034}
   - component: {fileID: 284109033}
   - component: {fileID: 284109037}
-  - component: {fileID: 284109038}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -476,18 +478,6 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &284109037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284109032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0492134d24433eb42877612414b7f76c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &284109038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
