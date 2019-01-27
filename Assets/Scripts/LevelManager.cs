@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     public List<FurnitureObjects> blackObjectsNeeded;
     public List<FurnitureObjects> whiteObjectsNeeded;
     public static LevelManager instance;
+
+    public string nextLevel;
 
     public Exit whiteExit;
     public static Exit WhiteExit => instance.whiteExit;
@@ -20,21 +23,31 @@ public class LevelManager : MonoBehaviour
     public PlayerController blackPlayer;
     public static PlayerController BlackPlayer => instance.blackPlayer;
 
+    public bool blackIsDone;
+    public static bool BlackIsDone { get => instance != null ? instance.blackIsDone : false; set { if (instance != null) instance.blackIsDone = value; } }
+
+    public bool whiteIsDone;
+    public static bool WhiteIsDone { get => instance != null ? instance.whiteIsDone : false; set { if (instance != null) instance.whiteIsDone = value; } }
+
     private void Awake() {
         instance = this;
+        blackIsDone = false;
+        whiteIsDone = false;
     }
 
     private void Update() {
         bool missingPart = false;
-        foreach (FurnitureObjects furn in blackObjectsNeeded) {
-            if (!furn.isBlack) {
-                missingPart = true;
-                break;
+        if (!blackIsDone) {
+            foreach (FurnitureObjects furn in blackObjectsNeeded) {
+                if (furn.isBlack || !furn.IsUncovered) {
+                    missingPart = true;
+                    break;
+                }
             }
         }
         if (!missingPart) {
             foreach (FurnitureObjects furn in whiteObjectsNeeded) {
-                if (furn.isBlack) {
+                if (!furn.isBlack || !furn.IsUncovered) {
                     missingPart = true;
                     break;
                 }
@@ -47,6 +60,9 @@ public class LevelManager : MonoBehaviour
         else {
             whiteExit.SetOpen(false);
             blackExit.SetOpen(false);
+        }
+        if (blackIsDone && whiteIsDone) {
+            SceneManager.LoadScene(nextLevel);
         }
     }
 }

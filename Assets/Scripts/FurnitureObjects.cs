@@ -24,6 +24,7 @@ public class FurnitureObjects : MonoBehaviour {
         collider = GetComponent<BoxCollider2D>();
         outline.gameObject.SetActive(false);
         intersects = new List<IntersectCollider>();
+        IsUncovered = false;
         foreach (IntersectCollider coll in GetComponentsInChildren<IntersectCollider>()) {
             intersects.Add(coll);
         }

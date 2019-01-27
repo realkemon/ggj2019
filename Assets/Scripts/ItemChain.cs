@@ -48,6 +48,8 @@ public class ItemChain : MonoBehaviour {
             for (int width = 1; width < 7; ++width) {
                 List<Vector3> widthPos = new List<Vector3>();
                 for (int height = 1; height < 7; ++height) {
+                    widthPos.Add(transform.position);
+                    /*
                     RaycastHit2D hitLowLeft = Physics2D.Raycast(transform.position + 0.1f * Vector3.up, Vector3.left, width * 0.5f, mask);
                     RaycastHit2D hitLowRight = Physics2D.Raycast(transform.position + 0.1f * Vector3.up, Vector3.right, width * 0.5f, mask);
                     RaycastHit2D hitHighLeft = Physics2D.Raycast(transform.position + Vector3.up * (height - 0.1f), Vector3.left, width * 0.5f, mask);
@@ -95,10 +97,10 @@ public class ItemChain : MonoBehaviour {
                             widthPos.Add(transform.position + Vector3.left * (width * 0.5f - hitHighRight.distance));
                         }
                         else {
-                            Debug.Log("no collider is null");
+                            //Debug.Log("no collider is null");
                             widthPos.Add(transform.position);
                         }
-                    }
+                    }*/
                 }
                 positions.Add(widthPos);
             }
