@@ -9,7 +9,7 @@ public class platform : MonoBehaviour
     public Vector3 targetPosition;
 
     private bool goingDown;
-    private float moveDistance = 5f;
+    
     private float lerpTime = 5;
     private float currentLerpTime = 0;
 
@@ -24,24 +24,6 @@ public class platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        // UP
-        if (transform.position == position1)
-        {
-            goingDown = true;
-            currentLerpTime = 0;
-            targetPosition = position2;
-        }
-
-        // DOWN
-        if (transform.position == position2)
-        {
-            goingDown = false;
-            currentLerpTime = 0;
-            targetPosition = position1;
-        }
-        */
-
         if (goingDown == true)
         {
             currentLerpTime += Time.deltaTime;
