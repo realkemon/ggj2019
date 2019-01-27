@@ -1697,7 +1697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position1: {x: -0.75, y: 4, z: 0}
-  position2: {x: 13, y: 4, z: 0}
+  position2: {x: 20, y: 4, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   currentLerpTime: 6.5
 --- !u!50 &710058331
@@ -2879,7 +2879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position1: {x: -0.75, y: 4, z: 0}
-  position2: {x: 13, y: 4, z: 0}
+  position2: {x: 20, y: 4, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   currentLerpTime: 1
 --- !u!50 &1160945664
@@ -3609,7 +3609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position1: {x: -0.75, y: 4, z: 0}
-  position2: {x: 13, y: 4, z: 0}
+  position2: {x: 20, y: 4, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   currentLerpTime: 9
 --- !u!50 &1373643169
@@ -5521,7 +5521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position1: {x: -0.75, y: 4, z: 0}
-  position2: {x: 13, y: 4, z: 0}
+  position2: {x: 20, y: 4, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   currentLerpTime: 4
 --- !u!50 &1836372807
