@@ -9,10 +9,7 @@ public class planets : MonoBehaviour
     public Vector3 targetPosition;
     public float currentLerpTime;
 
-    private bool goingLeft;
-
     private float lerpTime = 10;
-    private float speed = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +29,6 @@ public class planets : MonoBehaviour
         if (currentLerpTime >= lerpTime)
         {
             currentLerpTime = lerpTime;
-            goingLeft = false;
         }
         transform.position = Vector3.Lerp(position2, position1, currentLerpTime / lerpTime);
     }
