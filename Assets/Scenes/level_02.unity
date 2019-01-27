@@ -1861,7 +1861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9597d5a40c0634ba3d5d41e02d3f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlack: 0
+  _isBlack: 0
   fullSprite: {fileID: 1127357829}
   outline: {fileID: 466971898}
   angle1: 5
@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9597d5a40c0634ba3d5d41e02d3f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlack: 1
+  _isBlack: 1
   fullSprite: {fileID: 1796271363}
   outline: {fileID: 145578551}
   angle1: 5
