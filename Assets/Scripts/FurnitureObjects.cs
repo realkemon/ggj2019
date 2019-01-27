@@ -54,6 +54,12 @@ public class FurnitureObjects : MonoBehaviour {
         }
     }
 
+    public void ResetColliders() {
+        foreach (IntersectCollider coll in intersects) {
+            coll.gameObject.SetActive(true);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision) {
         if (!IsUncovered) {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) {

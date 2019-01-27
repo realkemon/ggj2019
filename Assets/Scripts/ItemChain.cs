@@ -50,9 +50,9 @@ public class ItemChain : MonoBehaviour {
             Timestamp previousStamp = (timestamps.Count > 1 ? timestamps.First.Next.Value : null);
             int mask = LayerMask.GetMask(new string[] { "Walls" });
             List<List<Vector3>> positions = new List<List<Vector3>>();
-            for (int width = 1; width < 7; ++width) {
+            for (int width = 1; width < 8; ++width) {
                 List<Vector3> widthPos = new List<Vector3>();
-                for (int height = 1; height < 7; ++height) {
+                for (int height = 1; height < 8; ++height) {
                     widthPos.Add(transform.position);
                     /*
                     RaycastHit2D hitLowLeft = Physics2D.Raycast(transform.position + 0.1f * Vector3.up, Vector3.left, width * 0.5f, mask);
@@ -183,6 +183,10 @@ public class ItemChain : MonoBehaviour {
     }
 
     public void RemoveObject(int idx) {
+        if (SelectedItem != -1) {
+            objects[SelectedItem].outline.transform.localScale = backupScale;
+            SelectedItem = -1;
+        }
         objects.RemoveAt(idx);
         currentTimestampPosition.RemoveAt(idx);
     }
