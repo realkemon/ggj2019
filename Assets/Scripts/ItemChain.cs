@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemChain : MonoBehaviour
-{
+public class ItemChain : MonoBehaviour {
     private class Timestamp {
         public const int WALK = 0;
         public const int JUMP = 1;
@@ -32,8 +30,7 @@ public class ItemChain : MonoBehaviour
     private LinkedList<Timestamp> timestamps;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         player = GetComponent<PlayerController>();
         lastPosition = transform.position;
         objects = new List<FurnitureObjects>();
@@ -43,7 +40,7 @@ public class ItemChain : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Vector3.Distance(transform.position, lastPosition) > 1e-2 || timestamps.Count == 0) {
+        if (!(transform.position == lastPosition) || timestamps.Count == 0) {
             Timestamp stamp = new Timestamp(player.IsOnSurface ? Timestamp.WALK : (player.jumpStarted ? Timestamp.JUMP : Timestamp.FALL), timestamps.Count > 0 ? timestamps.First.Value.id + 1 : 0, transform.position);
             Timestamp previousStamp = (timestamps.Count > 1 ? timestamps.First.Next.Value : null);
             int mask = LayerMask.GetMask(new string[] { "Walls" });
@@ -53,50 +50,54 @@ public class ItemChain : MonoBehaviour
                 for (int height = 1; height < 7; ++height) {
                     RaycastHit2D hitLowLeft = Physics2D.Raycast(transform.position + 0.1f * Vector3.up, Vector3.left, width * 0.5f, mask);
                     RaycastHit2D hitLowRight = Physics2D.Raycast(transform.position + 0.1f * Vector3.up, Vector3.right, width * 0.5f, mask);
-                    RaycastHit2D hitHighLeft = Physics2D.Raycast(transform.position + Vector3.up * height + 0.1f * Vector3.down, Vector3.left, width * 0.5f, mask);
-                    RaycastHit2D hitHighRight = Physics2D.Raycast(transform.position + Vector3.up * height + 0.1f * Vector3.down, Vector3.right, width * 0.5f, mask);
+                    RaycastHit2D hitHighLeft = Physics2D.Raycast(transform.position + Vector3.up * (height - 0.1f), Vector3.left, width * 0.5f, mask);
+                    RaycastHit2D hitHighRight = Physics2D.Raycast(transform.position + Vector3.up * (height - 0.1f), Vector3.right, width * 0.5f, mask);
 
-                    RaycastHit2D hitLeftUp = Physics2D.Raycast(transform.position + Vector3.up * height * 0.5f + 0.5f * width * Vector3.left + 0.1f * Vector3.right, Vector3.up, height * 0.5f, mask);
-                    RaycastHit2D hitRightUp = Physics2D.Raycast(transform.position + Vector3.up * height * 0.5f + 0.5f * width * Vector3.right + 0.1f * Vector3.left, Vector3.up, height * 0.5f, mask);
-                    RaycastHit2D hitLeftDown = Physics2D.Raycast(transform.position + Vector3.up * height * 0.5f + 0.5f * width * Vector3.left + 0.1f * Vector3.right, Vector3.down, height * 0.5f, mask);
-                    RaycastHit2D hitRightDown = Physics2D.Raycast(transform.position + Vector3.up * height * 0.5f + 0.5f * width * Vector3.right + 0.1f * Vector3.left, Vector3.down, height * 0.5f, mask);
+                    RaycastHit2D hitLeftUp = Physics2D.Raycast(transform.position + Vector3.up * height * 0.5f + (0.5f * width - 0.1f) * Vector3.left, Vector3.up, height * 0.5f, mask);
+                    RaycastHit2D hitRightUp = Physics2D.Raycast(transform.position + Vector3.up * height * 0.5f + (0.5f * width - 0.1f) * Vector3.right, Vector3.up, height * 0.5f, mask);
+                    RaycastHit2D hitLeftDown = Physics2D.Raycast(transform.position + Vector3.up * height * 0.5f + (0.5f * width - 0.1f) * Vector3.left, Vector3.down, height * 0.5f, mask);
+                    RaycastHit2D hitRightDown = Physics2D.Raycast(transform.position + Vector3.up * height * 0.5f + (0.5f * width - 0.1f) * Vector3.right, Vector3.down, height * 0.5f, mask);
                     if (hitLowLeft.collider == null && hitLowRight.collider == null &&
-                        hitHighLeft.collider == null && hitHighRight.collider == null) {
+                        hitHighLeft.collider == null && hitHighRight.collider == null &&
+                        (previousStamp != null ? previousStamp.position[width - 1][height - 1] == previousStamp.playerPos : true)) {
                         widthPos.Add(transform.position);
-                    }
-                    else if (hitLowLeft.collider != null) {
-                        if (hitHighLeft.collider != null) {
-                            widthPos.Add(transform.position + Vector3.right * (width * 0.5f - Mathf.Min(hitLowLeft.distance, hitHighLeft.distance)));
-                        }
-                        else if (hitLowRight.collider != null) {
-                            widthPos.Add(previousStamp != null ? new Vector3(transform.position.x, previousStamp.position[width - 1][height - 1].y) : transform.position);
-                        }
-                        else {
-                            widthPos.Add(transform.position + Vector3.right * (width * 0.5f - hitLowLeft.distance));
-                        }
-                    }
-                    else if (hitLowRight.collider != null) {
-                        if (hitHighRight.collider != null) {
-                            widthPos.Add(transform.position + Vector3.left * (width * 0.5f - Mathf.Min(hitLowRight.distance, hitHighRight.distance)));
-                        }
-                        else {
-                            widthPos.Add(transform.position + Vector3.left * (width * 0.5f - hitLowRight.distance));
-                        }
-                    }
-                    else if (hitHighLeft.collider != null) {
-                        if (hitHighRight.collider != null) {
-                            widthPos.Add(transform.position);
-                        }
-                        else {
-                            widthPos.Add(transform.position);
-                        }
-                    }
-                    else if (hitHighRight.collider != null) {
-                        widthPos.Add(transform.position + Vector3.left * (width * 0.5f - hitHighRight.distance));
                     }
                     else {
-                        Debug.Log("no collider is null");
-                        widthPos.Add(transform.position);
+                        Vector3 newPos = transform.position;
+                        if (hitLowLeft.collider != null) {
+                            if (hitHighLeft.collider != null) {
+                                widthPos.Add(transform.position + Vector3.right * (width * 0.5f - Mathf.Min(hitLowLeft.distance, hitHighLeft.distance)));
+                            }
+                            else if (hitLowRight.collider != null) {
+                                widthPos.Add(previousStamp != null ? new Vector3(transform.position.x, previousStamp.position[width - 1][height - 1].y) : transform.position);
+                            }
+                            else {
+                                widthPos.Add(transform.position + Vector3.right * (width * 0.5f - hitLowLeft.distance));
+                            }
+                        }
+                        else if (hitLowRight.collider != null) {
+                            if (hitHighRight.collider != null) {
+                                widthPos.Add(transform.position + Vector3.left * (width * 0.5f - Mathf.Min(hitLowRight.distance, hitHighRight.distance)));
+                            }
+                            else {
+                                widthPos.Add(transform.position + Vector3.left * (width * 0.5f - hitLowRight.distance));
+                            }
+                        }
+                        else if (hitHighLeft.collider != null) {
+                            if (hitHighRight.collider != null) {
+                                widthPos.Add(transform.position);
+                            }
+                            else {
+                                widthPos.Add(transform.position);
+                            }
+                        }
+                        else if (hitHighRight.collider != null) {
+                            widthPos.Add(transform.position + Vector3.left * (width * 0.5f - hitHighRight.distance));
+                        }
+                        else {
+                            Debug.Log("no collider is null");
+                            widthPos.Add(transform.position);
+                        }
                     }
                 }
                 positions.Add(widthPos);

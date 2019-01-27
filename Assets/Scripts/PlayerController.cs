@@ -15,22 +15,25 @@ public class PlayerController : MonoBehaviour {
     public bool IsOnSurface { get; private set; }
     public bool jumpStarted;
     public float airMoveFactor = 0.3f;
-
-    public SpriteRenderer sr;
+    
     public BoxCollider2D box;
     public ItemChain chain;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
         chain = GetComponent<ItemChain>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update() {
         Vector2 vel = rigidbody.velocity;
         float temp = vel.x + airMoveFactor * Time.deltaTime * HorizontalInput;
+        anim.SetBool("IsWalking", HorizontalInput != 0f);
+        anim.transform.localScale = new Vector3(-Mathf.Sign(HorizontalInput) * Mathf.Abs(anim.transform.localScale.x), 1f, 1f);
         vel.x = IsOnSurface
             ? GlobalGameParameters.MaxWalkSpeed * HorizontalInput
             : Mathf.Sign(temp) * Mathf.Min(GlobalGameParameters.MaxWalkSpeed, Mathf.Abs(temp));
@@ -49,14 +52,12 @@ public class PlayerController : MonoBehaviour {
         if (CrouchInput) {
             box.offset = new Vector2(0f, 1f);
             box.size = new Vector2(2f, 2f);
-            sr.transform.localScale = new Vector3(24f, 24f, 1f);
-            sr.transform.localPosition = new Vector3(0f, 1f, 0f);
+            anim.SetBool("IsCrouching", true);
         }
         else {
             box.offset = new Vector2(0f, 2f);
             box.size = new Vector2(2f, 4f);
-            sr.transform.localScale = new Vector3(24f, 48f, 1f);
-            sr.transform.localPosition = new Vector3(0f, 2f, 0f);
+            anim.SetBool("IsCrouching", false);
         }
     }
 

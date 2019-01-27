@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    //public List<FurnitureObject> blackObjectsNeeded;
-    //public List<FurnitureObject> whiteObjectsNeeded;
+    public List<FurnitureObjects> blackObjectsNeeded;
+    public List<FurnitureObjects> whiteObjectsNeeded;
     public static LevelManager instance;
 
     public Exit whiteExit;
@@ -22,5 +22,31 @@ public class LevelManager : MonoBehaviour
 
     private void Awake() {
         instance = this;
+    }
+
+    private void Update() {
+        bool missingPart = false;
+        foreach (FurnitureObjects furn in blackObjectsNeeded) {
+            if (!furn.isBlack) {
+                missingPart = true;
+                break;
+            }
+        }
+        if (!missingPart) {
+            foreach (FurnitureObjects furn in whiteObjectsNeeded) {
+                if (furn.isBlack) {
+                    missingPart = true;
+                    break;
+                }
+            }
+        }
+        if (!missingPart) {
+            whiteExit.SetOpen(true);
+            blackExit.SetOpen(true);
+        }
+        else {
+            whiteExit.SetOpen(false);
+            blackExit.SetOpen(false);
+        }
     }
 }
