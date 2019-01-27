@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level_01.unity
     guid: 16f144924cb1b5b4987923035d511edf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/cedric_test.unity
     guid: ec2f42b56b2794f47aca0e5154b3b4b2
   - enabled: 1
@@ -27,8 +27,14 @@ EditorBuildSettings:
     path: Assets/Scenes/level_05.unity
     guid: 635e3a58c1dfa424289f962dcbed4575
   - enabled: 1
+    path: Assets/Scenes/level_06.unity
+    guid: b174edc8cde62f943bd5849dce16911d
+  - enabled: 1
     path: Assets/Scenes/LevelsMenu.unity
     guid: 00d2fde9b14b8d84a9d4b6dfa89c2ac2
+  - enabled: 1
+    path: Assets/Scenes/PauseMenu.unity
+    guid: ee2b6b368b7cbbf4ba55166d612f2887
   - enabled: 1
     path: Assets/Scenes/ControlsMenu.unity
     guid: ca7573e654ff6b24aa627228f1355e71
