@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     private bool InteractInput => Input.GetAxis(isPlayerOne ? "Interact1" : "Interact2") > 0f;
     private bool DropInput => Input.GetAxis(isPlayerOne ? "Drop1" : "Drop2") > 0f;
     private bool CrouchInput => Input.GetAxis(isPlayerOne ? "Crouch1" : "Crouch2") > 0f;
+    private bool SelectInput => Input.GetAxis(isPlayerOne ? "Select1" : "Select2") > 0f;
     private float JumpSpeed => Mathf.Sqrt(Mathf.Abs(GlobalGameParameters.JumpHeight * Physics2D.gravity.y * 2f));
 
     new private Rigidbody2D rigidbody;
@@ -48,6 +49,9 @@ public class PlayerController : MonoBehaviour {
             rigidbody.velocity = vel;
 
             if (InteractInput) {
+
+            }
+            if (SelectInput) {
 
             }
             if (CrouchInput) {
