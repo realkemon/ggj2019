@@ -30,34 +30,36 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Vector2 vel = rigidbody.velocity;
-        float temp = vel.x + airMoveFactor * Time.deltaTime * HorizontalInput;
-        anim.SetBool("IsWalking", HorizontalInput != 0f);
-        anim.transform.localScale = new Vector3(-Mathf.Sign(HorizontalInput) * Mathf.Abs(anim.transform.localScale.x), 1f, 1f);
-        vel.x = IsOnSurface
-            ? GlobalGameParameters.MaxWalkSpeed * HorizontalInput
-            : Mathf.Sign(temp) * Mathf.Min(GlobalGameParameters.MaxWalkSpeed, Mathf.Abs(temp));
+        if (!(isPlayerOne ? LevelManager.BlackIsDone : LevelManager.WhiteIsDone)) {
+            Vector2 vel = rigidbody.velocity;
+            float temp = vel.x + airMoveFactor * Time.deltaTime * HorizontalInput;
+            anim.SetBool("IsWalking", HorizontalInput != 0f);
+            anim.transform.localScale = new Vector3(-Mathf.Sign(HorizontalInput) * Mathf.Abs(anim.transform.localScale.x), 1f, 1f);
+            vel.x = IsOnSurface
+                ? GlobalGameParameters.MaxWalkSpeed * HorizontalInput
+                : Mathf.Sign(temp) * Mathf.Min(GlobalGameParameters.MaxWalkSpeed, Mathf.Abs(temp));
 
-        if (!jumpStarted && IsOnSurface && VerticalInput > 0f) {
-            vel.y = JumpSpeed;
-            //jumpFrom = transform.position;
-            //Debug.Log("JumpFrom: " + jumpFrom);
-            jumpStarted = true;
-        }
-        rigidbody.velocity = vel;
+            if (!jumpStarted && IsOnSurface && VerticalInput > 0f) {
+                vel.y = JumpSpeed;
+                //jumpFrom = transform.position;
+                //Debug.Log("JumpFrom: " + jumpFrom);
+                jumpStarted = true;
+            }
+            rigidbody.velocity = vel;
 
-        if (InteractInput) {
+            if (InteractInput) {
 
-        }
-        if (CrouchInput) {
-            box.offset = new Vector2(0f, 1f);
-            box.size = new Vector2(2f, 2f);
-            anim.SetBool("IsCrouching", true);
-        }
-        else {
-            box.offset = new Vector2(0f, 2f);
-            box.size = new Vector2(2f, 4f);
-            anim.SetBool("IsCrouching", false);
+            }
+            if (CrouchInput) {
+                box.offset = new Vector2(0f, 1f);
+                box.size = new Vector2(2f, 2f);
+                anim.SetBool("IsCrouching", true);
+            }
+            else {
+                box.offset = new Vector2(0f, 2f);
+                box.size = new Vector2(2f, 4f);
+                anim.SetBool("IsCrouching", false);
+            }
         }
     }
 
@@ -69,6 +71,15 @@ public class PlayerController : MonoBehaviour {
                 //Debug.Log("JumpTo: " + transform.position);
                 IsOnSurface = true;
                 jumpStarted = false;
+            }
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Exit")) {
+            Debug.Log("Exit");
+            if (isPlayerOne) {
+                LevelManager.BlackIsDone = true;
+            }
+            else {
+                LevelManager.WhiteIsDone = true;
             }
         }
     }

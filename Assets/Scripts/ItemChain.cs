@@ -95,7 +95,7 @@ public class ItemChain : MonoBehaviour {
                             widthPos.Add(transform.position + Vector3.left * (width * 0.5f - hitHighRight.distance));
                         }
                         else {
-                            Debug.Log("no collider is null");
+                            //Debug.Log("no collider is null");
                             widthPos.Add(transform.position);
                         }
                     }

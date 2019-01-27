@@ -13,7 +13,7 @@ public class Exit : MonoBehaviour
     }
 
     public void SetOpen(bool open) {
-        anim.SetBool("IsOpen", true);
-        coll.enabled = !open;
+        anim.SetBool("IsOpen", open);
+        gameObject.layer = LayerMask.NameToLayer(open ? "Exit" : "Walls");
     }
 }

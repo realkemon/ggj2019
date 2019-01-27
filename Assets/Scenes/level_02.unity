@@ -385,6 +385,31 @@ PrefabInstance:
       propertyPath: airMoveFactor
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1478130445699017794, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+        type: 3}
+      propertyPath: blackObjectsNeeded.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478130445699017794, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+        type: 3}
+      propertyPath: whiteObjectsNeeded.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478130445699017794, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+        type: 3}
+      propertyPath: nextLevel
+      value: level_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478130445699017794, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+        type: 3}
+      propertyPath: blackObjectsNeeded.Array.data[0]
+      value: 
+      objectReference: {fileID: 1156335276}
+    - target: {fileID: 1478130445699017794, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+        type: 3}
+      propertyPath: whiteObjectsNeeded.Array.data[0]
+      value: 
+      objectReference: {fileID: 1730570586}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8575bc4523361544dbe7d33f52ce3e2f, type: 3}
 --- !u!1 &258748185
