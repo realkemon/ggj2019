@@ -766,6 +766,7 @@ MonoBehaviour:
   airMoveFactor: 3
   sr: {fileID: 1478130446757125367}
   box: {fileID: 0}
+  chain: {fileID: 0}
 --- !u!114 &1478130446677748388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,9 +779,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee4bb9c8c338a74e8193450d754a9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxItems: 0
-  itemDistance: 0
-  numberOfMaximumCorrectedPositions: 0
+  maxItems: 5
+  itemDistance: 1
+  numberOfMaximumCorrectedPositions: 4
 --- !u!61 &1478130446677748392
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1457,6 +1458,7 @@ MonoBehaviour:
   airMoveFactor: 3
   sr: {fileID: 1478130446041415429}
   box: {fileID: 0}
+  chain: {fileID: 0}
 --- !u!114 &1478130447118571338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1469,9 +1471,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee4bb9c8c338a74e8193450d754a9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxItems: 0
-  itemDistance: 0
-  numberOfMaximumCorrectedPositions: 0
+  maxItems: 5
+  itemDistance: 1
+  numberOfMaximumCorrectedPositions: 4
 --- !u!61 &1478130447118571342
 BoxCollider2D:
   m_ObjectHideFlags: 0

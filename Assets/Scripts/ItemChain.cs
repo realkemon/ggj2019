@@ -62,12 +62,10 @@ public class ItemChain : MonoBehaviour
                         hitHighLeft.collider == null && hitHighRight.collider == null) {
                         widthPos.Add(transform.position);
                         widthValid.Add(true);
-                        Debug.Log(width + " " + height + " " + true);
                     }
                     else {
                         widthPos.Add(transform.position);
                         widthValid.Add(false);
-                        Debug.Log(width + " " + height + " " + false);
                     }
                 }
                 positions.Add(widthPos);
