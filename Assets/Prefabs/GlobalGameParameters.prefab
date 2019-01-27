@@ -46,3 +46,6 @@ MonoBehaviour:
   jumpHeight: 2.2
   jumpWidth: 1
   maxWalkSpeed: 7
+  maxItems: 5
+  itemDistance: 2.5
+  maximumItemDistance: 5

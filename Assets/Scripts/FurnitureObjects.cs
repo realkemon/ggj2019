@@ -78,5 +78,9 @@ public class FurnitureObjects : MonoBehaviour {
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, 0.1f);
+        if (collider != null) {
+            Gizmos.DrawSphere(transform.position + Vector3.right * ColliderWidth * 0.5f, 0.1f);
+            Gizmos.DrawSphere(transform.position + Vector3.left * ColliderWidth * 0.5f, 0.1f);
+        }
     }
 }
