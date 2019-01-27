@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9597d5a40c0634ba3d5d41e02d3f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlack: 0
+  _isBlack: 0
   fullSprite: {fileID: 1649379719}
   outline: {fileID: 895396713}
   angle1: 5
@@ -1969,7 +1969,7 @@ GameObject:
   - component: {fileID: 790145818}
   - component: {fileID: 790145817}
   - component: {fileID: 790145816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wreckingBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2287,7 +2287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9597d5a40c0634ba3d5d41e02d3f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlack: 0
+  _isBlack: 0
   fullSprite: {fileID: 396189819}
   outline: {fileID: 1452102617}
   angle1: 5
@@ -4291,7 +4291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9597d5a40c0634ba3d5d41e02d3f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlack: 1
+  _isBlack: 1
   fullSprite: {fileID: 1282851779}
   outline: {fileID: 1833018703}
   angle1: 5
@@ -5168,7 +5168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9597d5a40c0634ba3d5d41e02d3f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBlack: 1
+  _isBlack: 1
   fullSprite: {fileID: 239153021}
   outline: {fileID: 1230273472}
   angle1: 5
