@@ -4,11 +4,25 @@ public class PlayerController : MonoBehaviour {
     public bool isPlayerOne;
 
     private float HorizontalInput => Input.GetAxis(isPlayerOne ? "Horizontal1" : "Horizontal2");
-    private float VerticalInput => Input.GetAxis(isPlayerOne ? "Vertical1" : "Vertical2");
-    private bool InteractInput => Input.GetAxis(isPlayerOne ? "Interact1" : "Interact2") > 0f;
+
+    private float lastVertical;
+    private float VerticalInputVal => Input.GetAxis(isPlayerOne ? "Vertical1" : "Vertical2");
+    private bool VerticalInput => VerticalInputVal > 0 && lastVertical == 0f;
+
+    private float lastInteract;
+    private float InteractInputVal => Input.GetAxis(isPlayerOne ? "Interact1" : "Interact2");
+    private bool InteractInput => InteractInputVal > 0f && lastInteract == 0f;
+
     private bool DropInput => Input.GetAxis(isPlayerOne ? "Drop1" : "Drop2") > 0f;
-    private bool CrouchInput => Input.GetAxis(isPlayerOne ? "Crouch1" : "Crouch2") > 0f;
-    private bool SelectInput => Input.GetAxis(isPlayerOne ? "Select1" : "Select2") > 0f;
+
+    private float lastCrouch;
+    private float CrouchInputVal => Input.GetAxis(isPlayerOne ? "Crouch1" : "Crouch2");
+    private bool CrouchInput => CrouchInputVal > 0f;
+
+    private float lastSelect;
+    private float SelectInputVal => Input.GetAxis(isPlayerOne ? "Select1" : "Select2");
+    private bool SelectInput => SelectInputVal > 0f && lastSelect == 0f;
+
     private float JumpSpeed => Mathf.Sqrt(Mathf.Abs(GlobalGameParameters.JumpHeight * Physics2D.gravity.y * 2f));
 
     new private Rigidbody2D rigidbody;
@@ -42,7 +56,7 @@ public class PlayerController : MonoBehaviour {
                     : Mathf.Sign(temp) * Mathf.Min(GlobalGameParameters.MaxWalkSpeed, Mathf.Abs(temp));
             }
 
-            if (!jumpStarted && IsOnSurface && VerticalInput > 0f) {
+            if (!jumpStarted && IsOnSurface && VerticalInput) {
                 vel.y = JumpSpeed;
                 jumpStarted = true;
             }
@@ -52,7 +66,18 @@ public class PlayerController : MonoBehaviour {
 
             }
             if (SelectInput) {
-
+                if (chain.Count == 0) {
+                    chain.SelectObject(-1);
+                }
+                else if (chain.SelectedItem == -1 && chain.Count > 0) {
+                    chain.SelectObject(0);
+                }
+                else if (chain.SelectedItem == chain.Count - 1) {
+                    chain.SelectObject(-1);
+                }
+                else {
+                    chain.SelectObject(chain.SelectedItem + 1);
+                }
             }
             if (CrouchInput) {
                 box.offset = new Vector2(0f, 1f);
@@ -65,6 +90,10 @@ public class PlayerController : MonoBehaviour {
                 anim.SetBool("IsCrouching", false);
             }
         }
+        lastSelect = SelectInputVal;
+        lastCrouch = CrouchInputVal;
+        lastInteract = InteractInputVal;
+        lastVertical = VerticalInputVal;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -76,7 +105,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
         if (collision.gameObject.layer == LayerMask.NameToLayer("Exit")) {
-            Debug.Log("Exit");
             if (isPlayerOne) {
                 LevelManager.BlackIsDone = true;
             }

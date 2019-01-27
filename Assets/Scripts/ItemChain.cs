@@ -23,6 +23,9 @@ public class ItemChain : MonoBehaviour {
         }
     }
 
+    private Vector3 backupScale;
+    public int Count => objects.Count;
+
     private List<FurnitureObjects> objects;
     private List<LinkedListNode<Timestamp>> currentTimestampPosition;
     private PlayerController player;
@@ -37,6 +40,7 @@ public class ItemChain : MonoBehaviour {
         objects = new List<FurnitureObjects>();
         timestamps = new LinkedList<Timestamp>();
         currentTimestampPosition = new List<LinkedListNode<Timestamp>>();
+        SelectedItem = -1;
     }
 
     // Update is called once per frame
@@ -184,8 +188,16 @@ public class ItemChain : MonoBehaviour {
     }
 
     public void SelectObject(int idx) {
-        idx = Mathf.Min(objects.Count - 1, idx);
-
+        if (idx == SelectedItem)
+            return;
+        if (SelectedItem != -1) {
+            objects[SelectedItem].outline.transform.localScale = backupScale;
+        }
+        SelectedItem = Mathf.Min(objects.Count - 1, idx);
+        if (SelectedItem != -1) {
+            backupScale = objects[SelectedItem].outline.transform.localScale;
+            objects[SelectedItem].outline.transform.localScale *= 1.5f;
+        }
     }
 
     public FurnitureObjects GetObject(int index) {
