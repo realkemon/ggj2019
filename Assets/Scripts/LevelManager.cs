@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    private bool CancelInput => Input.GetAxis("Cancel") > 0f;
+
     public List<FurnitureObjects> blackObjectsNeeded;
     public List<FurnitureObjects> whiteObjectsNeeded;
     public static LevelManager instance;
@@ -36,6 +38,11 @@ public class LevelManager : MonoBehaviour
     }
 
     private void Update() {
+        if (CancelInput)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
         bool missingPart = false;
         if (!blackIsDone) {
             foreach (FurnitureObjects furn in blackObjectsNeeded) {
