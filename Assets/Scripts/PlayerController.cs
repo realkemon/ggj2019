@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour {
     public ItemChain chain;
     public Animator anim;
 
+    private Hole hole;
+
     // Start is called before the first frame update
     void Start() {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -47,14 +49,12 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         if (!(isPlayerOne ? LevelManager.BlackIsDone : LevelManager.WhiteIsDone)) {
             Vector2 vel = rigidbody.velocity;
-            if (HorizontalInput != 0f) {
                 float temp = vel.x + airMoveFactor * Time.deltaTime * HorizontalInput;
                 anim.SetBool("IsWalking", HorizontalInput != 0f);
                 anim.transform.localScale = new Vector3(-Mathf.Sign(HorizontalInput) * Mathf.Abs(anim.transform.localScale.x), 1f, 1f);
                 vel.x = IsOnSurface
                     ? GlobalGameParameters.MaxWalkSpeed * HorizontalInput
                     : Mathf.Sign(temp) * Mathf.Min(GlobalGameParameters.MaxWalkSpeed, Mathf.Abs(temp));
-            }
 
             if (!jumpStarted && IsOnSurface && VerticalInput) {
                 vel.y = JumpSpeed;
@@ -62,8 +62,19 @@ public class PlayerController : MonoBehaviour {
             }
             rigidbody.velocity = vel;
 
-            if (InteractInput) {
+            //Debug.Log(InteractInput + " " + InteractInputVal + " " + hole + " " + chain.SelectedItem);
+            if (InteractInput && hole != null && chain.SelectedItem > -1) {
+                if (hole.GetComponentInChildren<BoxCollider2D>().bounds.size.x >= chain.GetObject(chain.SelectedItem).ColliderWidth) {
+                    FurnitureObjects obj = chain.GetObject(chain.SelectedItem);
+                    chain.RemoveObject(chain.SelectedItem);
 
+                    if (isPlayerOne) {
+                        hole.DropItem(obj);
+                    }
+                    else {
+                        hole.RaiseItem(obj);
+                    }
+                }
             }
             if (SelectInput) {
                 if (chain.Count == 0) {
@@ -96,8 +107,20 @@ public class PlayerController : MonoBehaviour {
         lastVertical = VerticalInputVal;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("HoleTriggers")) {
+            hole = collision.gameObject.GetComponentInParent<Hole>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("HoleTriggers")) {
+            hole = null;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (jumpStarted && !IsOnSurface && collision.gameObject.layer == LayerMask.NameToLayer("Walls")) {
+        if (jumpStarted && !IsOnSurface && (collision.gameObject.layer == LayerMask.NameToLayer("Walls") || collision.gameObject.layer == LayerMask.NameToLayer("Hole"))) {
             Vector3 contactPoint = collision.contacts[0].point;
             if (contactPoint.y <= transform.position.y) {
                 IsOnSurface = true;
@@ -115,14 +138,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
-        if (IsOnSurface && collision.gameObject.layer == LayerMask.NameToLayer("Walls")) {
+        if (IsOnSurface && (collision.gameObject.layer == LayerMask.NameToLayer("Walls") || collision.gameObject.layer == LayerMask.NameToLayer("Hole"))) {
             IsOnSurface = false;
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision) {
         Vector3 contactPoint = collision.contacts[0].point;
-        if (!IsOnSurface && contactPoint.y <= transform.position.y && collision.gameObject.layer == LayerMask.NameToLayer("Walls")) {
+        if (!IsOnSurface && contactPoint.y <= transform.position.y && (collision.gameObject.layer == LayerMask.NameToLayer("Walls") || collision.gameObject.layer == LayerMask.NameToLayer("Hole"))) {
             IsOnSurface = true;
         }
     }
