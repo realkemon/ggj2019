@@ -42,11 +42,13 @@ public class ItemChain : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (!transform.position.Equals(lastPosition) || timestamps.Count == 0) {
+        if (Vector3.Distance(transform.position, lastPosition) > 1e-2 || timestamps.Count == 0) {
             Timestamp stamp = new Timestamp(player.IsOnSurface ? Timestamp.WALK : (player.jumpStarted ? Timestamp.JUMP : Timestamp.FALL));
             int mask = LayerMask.GetMask(new string[] { "Walls" });
             List<List<Vector3>> positions = new List<List<Vector3>>();
             List<List<bool>> isValid = new List<List<bool>>();
+            Debug.Log("Frame--------------------------------------");
+            Debug.Log("Position: " + transform.position);
             for (int width = 1; width < 4; ++width) {
                 List<Vector3> widthPos = new List<Vector3>();
                 List<bool> widthValid = new List<bool>();
@@ -60,10 +62,12 @@ public class ItemChain : MonoBehaviour
                         hitHighLeft.collider == null && hitHighRight.collider == null) {
                         widthPos.Add(transform.position);
                         widthValid.Add(true);
+                        Debug.Log(width + " " + height + " " + true);
                     }
                     else {
                         widthPos.Add(transform.position);
                         widthValid.Add(false);
+                        Debug.Log(width + " " + height + " " + false);
                     }
                 }
                 positions.Add(widthPos);
@@ -88,6 +92,7 @@ public class ItemChain : MonoBehaviour
                 }
             }
         }
+        lastPosition = transform.position;
     }
 
     public void AddObject(FurnitureObjects obj) {
