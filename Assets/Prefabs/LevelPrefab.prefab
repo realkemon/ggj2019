@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxItems: 5
-  itemDistance: 1
+  itemDistance: 2.5
   numberOfMaximumCorrectedPositions: 4
 --- !u!61 &1478130446677748392
 BoxCollider2D:
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxItems: 5
-  itemDistance: 1
+  itemDistance: 2.5
   numberOfMaximumCorrectedPositions: 4
 --- !u!61 &1478130447118571342
 BoxCollider2D:

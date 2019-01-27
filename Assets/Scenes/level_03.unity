@@ -1251,7 +1251,7 @@ MonoBehaviour:
   isBlack: 1
   fullSprite: {fileID: 1563688796}
   outline: {fileID: 509691349}
-  angle1: 15
+  angle1: 5
   speed1: 9
 --- !u!4 &156270397
 Transform:
@@ -7016,26 +7016,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1478130446753815116, guid: 8575bc4523361544dbe7d33f52ce3e2f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478130446238102725, guid: 8575bc4523361544dbe7d33f52ce3e2f,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 24
-      objectReference: {fileID: 0}
     - target: {fileID: 1478130446924143063, guid: 8575bc4523361544dbe7d33f52ce3e2f,
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1478130446753815117, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+    - target: {fileID: 1478130446936098342, guid: 8575bc4523361544dbe7d33f52ce3e2f,
         type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 8ad6ca56f4357d145a1c72236f179453, type: 2}
     - target: {fileID: 1478130447308773781, guid: 8575bc4523361544dbe7d33f52ce3e2f,
         type: 3}
       propertyPath: m_Size.y
@@ -7056,15 +7046,25 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 8ad6ca56f4357d145a1c72236f179453, type: 2}
-    - target: {fileID: 1478130446936098342, guid: 8575bc4523361544dbe7d33f52ce3e2f,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 8ad6ca56f4357d145a1c72236f179453, type: 2}
     - target: {fileID: 1478130446924143056, guid: 8575bc4523361544dbe7d33f52ce3e2f,
         type: 3}
       propertyPath: m_Size.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478130446753815116, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478130446238102725, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478130446753815117, guid: 8575bc4523361544dbe7d33f52ce3e2f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8575bc4523361544dbe7d33f52ce3e2f, type: 3}
@@ -7503,7 +7503,7 @@ MonoBehaviour:
   isBlack: 1
   fullSprite: {fileID: 1167302674}
   outline: {fileID: 2059612184}
-  angle1: 15
+  angle1: 5
   speed1: 9
 --- !u!4 &1200653855
 Transform:
@@ -11704,7 +11704,7 @@ MonoBehaviour:
   isBlack: 0
   fullSprite: {fileID: 201381933}
   outline: {fileID: 985021395}
-  angle1: 15
+  angle1: 5
   speed1: 9
 --- !u!4 &1963652495
 Transform:

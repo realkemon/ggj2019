@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemChain : MonoBehaviour
 {
-    private struct Timestamp {
+    private class Timestamp {
         public const int WALK = 0;
         public const int JUMP = 1;
         public const int FALL = 2;
@@ -12,9 +12,11 @@ public class ItemChain : MonoBehaviour
         public List<List<bool>> isValid;
         public List<List<Vector3>> position;
         public float distanceToNext;
+        public int id;
 
-        public Timestamp(int jumpstate) {
+        public Timestamp(int jumpstate, int id) {
             this.jumpstate = jumpstate;
+            this.id = id;
             isValid = new List<List<bool>>();
             position = new List<List<Vector3>>();
             distanceToNext = -1f;
@@ -43,12 +45,10 @@ public class ItemChain : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (Vector3.Distance(transform.position, lastPosition) > 1e-2 || timestamps.Count == 0) {
-            Timestamp stamp = new Timestamp(player.IsOnSurface ? Timestamp.WALK : (player.jumpStarted ? Timestamp.JUMP : Timestamp.FALL));
+            Timestamp stamp = new Timestamp(player.IsOnSurface ? Timestamp.WALK : (player.jumpStarted ? Timestamp.JUMP : Timestamp.FALL), timestamps.Count > 0 ? timestamps.First.Value.id + 1 : 0);
             int mask = LayerMask.GetMask(new string[] { "Walls" });
             List<List<Vector3>> positions = new List<List<Vector3>>();
             List<List<bool>> isValid = new List<List<bool>>();
-            Debug.Log("Frame--------------------------------------");
-            Debug.Log("Position: " + transform.position);
             for (int width = 1; width < 4; ++width) {
                 List<Vector3> widthPos = new List<Vector3>();
                 List<bool> widthValid = new List<bool>();
@@ -77,18 +77,19 @@ public class ItemChain : MonoBehaviour
             if (timestamps.First.Next != null) {
                 Timestamp nextStamp = timestamps.First.Next.Value;
                 nextStamp.distanceToNext = Vector3.Distance(transform.position, nextStamp.position[0][0]);
-
-                LinkedListNode<Timestamp> currentStamp = timestamps.First;
-                float dist = 0;
-                for (int i = 0; i < objects.Count; ++i) {
-                    while (currentStamp.Next != null && dist < (i + 1) * itemDistance) {
-                        currentStamp = currentStamp.Next;
-                        dist += currentStamp.Value.distanceToNext;
-                    }
-                    currentTimestampPosition[i] = currentStamp;
-                    objects[i].transform.position = currentStamp.Value.position[Mathf.CeilToInt(objects[i].ColliderWidth * 0.5f)][Mathf.CeilToInt(objects[i].ColliderHeight)];
-                }
             }
+        }
+        LinkedListNode<Timestamp> currentStamp = timestamps.First;
+        float dist = 0;
+        for (int i = 0; i < objects.Count; ++i) {
+            while (currentStamp.Next != null && (dist < (i + 1) * itemDistance || currentStamp.Value.jumpstate != Timestamp.WALK)) {
+                currentStamp = currentStamp.Next;
+                dist += currentStamp.Value.distanceToNext;
+            }
+            if (currentStamp.Value.id > currentTimestampPosition[i].Value.id) {
+                currentTimestampPosition[i] = currentTimestampPosition[i].Previous;
+            }
+            objects[i].transform.position = currentTimestampPosition[i].Value.position[Mathf.CeilToInt(objects[i].ColliderWidth * 0.5f)][Mathf.CeilToInt(objects[i].ColliderHeight)];
         }
         lastPosition = transform.position;
     }
@@ -130,6 +131,7 @@ public class ItemChain : MonoBehaviour
 
     public void RemoveObject(int idx) {
         objects.RemoveAt(idx);
+        currentTimestampPosition.RemoveAt(idx);
     }
 
     public FurnitureObjects GetObject(int index) {
