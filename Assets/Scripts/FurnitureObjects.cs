@@ -2,9 +2,10 @@
 using UnityEngine;
 
 public class FurnitureObjects : MonoBehaviour {
-    public bool isBlack;
+    public bool _isBlack;
+    public bool IsBlack { get => _isBlack; set { _isBlack = value; outline.color = value ? Color.white : Color.black; fullSprite.color = value ? Color.black : Color.white; } }
     private bool isUncovered;
-    public bool IsUncovered { get => isUncovered; set { isUncovered = value; outline.gameObject.SetActive(true); fullSprite.gameObject.SetActive(false); } }
+    public bool IsUncovered { get => isUncovered; set { isUncovered = value; outline.gameObject.SetActive(value); fullSprite.gameObject.SetActive(!value); } }
     public SpriteRenderer fullSprite;
     public SpriteRenderer outline;
     private List<IntersectCollider> intersects;
@@ -17,7 +18,7 @@ public class FurnitureObjects : MonoBehaviour {
     public float speed1 = 3.0f; // speed (6.28 means about 1 second)
 
     private void OnValidate() {
-        SetSpriteColour();
+        IsBlack = IsBlack;
     }
 
     // Start is called before the first frame update
@@ -44,7 +45,7 @@ public class FurnitureObjects : MonoBehaviour {
             if (!hasActiveColliders) {
                 IsUncovered = true;
                 outline.gameObject.SetActive(true);
-                (!isBlack ? LevelManager.BlackPlayer : LevelManager.WhitePlayer).chain.AddObject(this);
+                (!IsBlack ? LevelManager.BlackPlayer : LevelManager.WhitePlayer).chain.AddObject(this);
             }
         }
         else {
@@ -64,17 +65,7 @@ public class FurnitureObjects : MonoBehaviour {
     }
 
     public void SetColour(bool black) {
-        isBlack = black;
-        SetSpriteColour();
-    }
-
-    private void SetSpriteColour() {
-        if (fullSprite != null) {
-            fullSprite.color = isBlack ? Color.black : Color.white;
-        }
-        if (outline != null) {
-            outline.color = isBlack ? Color.white : Color.black;
-        }
+        IsBlack = black;
     }
 
     private void OnDrawGizmos() {

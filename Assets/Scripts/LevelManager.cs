@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour
         bool missingPart = false;
         if (!blackIsDone) {
             foreach (FurnitureObjects furn in blackObjectsNeeded) {
-                if (furn.isBlack || !furn.IsUncovered) {
+                if (furn.IsBlack || !furn.IsUncovered) {
                     missingPart = true;
                     break;
                 }
@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
         }
         if (!missingPart) {
             foreach (FurnitureObjects furn in whiteObjectsNeeded) {
-                if (!furn.isBlack || !furn.IsUncovered) {
+                if (!furn.IsBlack || !furn.IsUncovered) {
                     missingPart = true;
                     break;
                 }
