@@ -33,12 +33,14 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         if (!(isPlayerOne ? LevelManager.BlackIsDone : LevelManager.WhiteIsDone)) {
             Vector2 vel = rigidbody.velocity;
-            float temp = vel.x + airMoveFactor * Time.deltaTime * HorizontalInput;
-            anim.SetBool("IsWalking", HorizontalInput != 0f);
-            anim.transform.localScale = new Vector3(-Mathf.Sign(HorizontalInput) * Mathf.Abs(anim.transform.localScale.x), 1f, 1f);
-            vel.x = IsOnSurface
-                ? GlobalGameParameters.MaxWalkSpeed * HorizontalInput
-                : Mathf.Sign(temp) * Mathf.Min(GlobalGameParameters.MaxWalkSpeed, Mathf.Abs(temp));
+            if (HorizontalInput != 0f) {
+                float temp = vel.x + airMoveFactor * Time.deltaTime * HorizontalInput;
+                anim.SetBool("IsWalking", HorizontalInput != 0f);
+                anim.transform.localScale = new Vector3(-Mathf.Sign(HorizontalInput) * Mathf.Abs(anim.transform.localScale.x), 1f, 1f);
+                vel.x = IsOnSurface
+                    ? GlobalGameParameters.MaxWalkSpeed * HorizontalInput
+                    : Mathf.Sign(temp) * Mathf.Min(GlobalGameParameters.MaxWalkSpeed, Mathf.Abs(temp));
+            }
 
             if (!jumpStarted && IsOnSurface && VerticalInput > 0f) {
                 vel.y = JumpSpeed;

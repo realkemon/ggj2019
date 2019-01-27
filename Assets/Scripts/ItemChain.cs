@@ -28,6 +28,7 @@ public class ItemChain : MonoBehaviour {
     private PlayerController player;
     private Vector3 lastPosition;
     private LinkedList<Timestamp> timestamps;
+    public int SelectedItem { get; private set; }
 
     // Start is called before the first frame update
     void Start() {
@@ -168,7 +169,6 @@ public class ItemChain : MonoBehaviour {
             }
             currentTimestampPosition.Add(lastStamp);
         }
-        Debug.Log(idx + " " + Mathf.CeilToInt(objects[idx].ColliderWidth * 0.5f) + " " + Mathf.CeilToInt(objects[idx].ColliderHeight));
         objects[idx].transform.position = currentTimestampPosition[idx].Value.position[Mathf.CeilToInt(objects[idx].ColliderWidth * 0.5f) - 1][Mathf.CeilToInt(objects[idx].ColliderHeight) - 1];
     }
 
@@ -181,6 +181,11 @@ public class ItemChain : MonoBehaviour {
     public void RemoveObject(int idx) {
         objects.RemoveAt(idx);
         currentTimestampPosition.RemoveAt(idx);
+    }
+
+    public void SelectObject(int idx) {
+        idx = Mathf.Min(objects.Count - 1, idx);
+
     }
 
     public FurnitureObjects GetObject(int index) {
