@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class FurnitureObjects : MonoBehaviour {
     public bool isBlack;
-    public bool IsUncovered { get; private set; }
+    private bool isUncovered;
+    public bool IsUncovered { get => isUncovered; set { isUncovered = value; outline.gameObject.SetActive(true); fullSprite.gameObject.SetActive(false); } }
     public SpriteRenderer fullSprite;
     public SpriteRenderer outline;
     private List<IntersectCollider> intersects;
